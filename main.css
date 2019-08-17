@@ -10,6 +10,7 @@ html, body {
   left: 0;
   right: 0;
   bottom: 0;
+  overflow-y: auto;
 }
 
 pre {
@@ -60,6 +61,8 @@ input[type=text] {
 
 p, input, pre {
   line-height: 20px;
+  white-space: pre-wrap;
+  word-break: keep-all;
 }
 
 p, ul, pre {
@@ -78,6 +81,10 @@ ul {
 
 a:hover {
   background-color: #333;
+}
+
+a {
+  text-decoration: none;
 }
 
 /* END OF THEME */
