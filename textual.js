@@ -5,17 +5,55 @@ document.getElementsByTagName("body")[0].addEventListener("click", function(){
 });
 
 const Textual = {
-  appendOutput: (output) => {
+  appendOutput: (input, output) => {
     const prmpt = "$ ";
     var pre = document.createElement("pre");;
-    var textNode = document.createTextNode(prmpt + output + '\n');
+    var textNode = document.createTextNode(prmpt + input + '\n');
     pre.appendChild(textNode);
     document.getElementById('output').appendChild(pre);
+    pre = document.createElement("pre");
+    pre.innerHTML = output;
+    document.getElementById('output').appendChild(pre);
+  },
+  link: (url, text) => {
+    if (!text) {
+      return (text) => {
+        return `<a href="${url}" target="_blank">${text}</a>`;
+      };
+    }
+    return `<a href="${url}" target="_blank">${text}</a>`;
+  },
+  color: (color, text) => {
+    if (!text) {
+      return (text) => {
+        return `<span style="color:${color}">${text}</span>`;
+      };
+    }
+    return `<span style="color:${color}">${text}</span>`;
+  },
+  replace: (text, changes) => {
+    let response = text;
+    Object.keys(changes).forEach(key => {
+      response = response.replace(key, changes[key](key));
+    });
+    return response;
   }
 };
 
-function processInput(input) {
-  Textual.appendOutput(input);
+const homeText = Textual.replace(`
+...My name is Tautvilas, welcome to my textual home site!...
+...Type HELP for the list of available commands.............\n`,
+{
+  commands: Textual.color('orange'),
+  Tautvilas: Textual.link('http://www.tautvilas.lt'),
+});
+
+function processInput(input, output) {
+  if (input === 'home') {
+    Textual.appendOutput(input, homeText);
+  } else {
+    Textual.appendOutput(input, 'Command not found\n');
+  }
 }
 
 document.getElementById('input').addEventListener('keypress', function (e) {
