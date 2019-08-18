@@ -5,13 +5,15 @@ document.getElementsByTagName("body")[0].addEventListener("click", function(){
 });
 
 const Textual = {
-  appendOutput: (input, output) => {
+  appendInput: (input) => {
     const prmpt = "$ ";
-    var pre = document.createElement("pre");;
-    var textNode = document.createTextNode(prmpt + input + '\n');
+    const pre = document.createElement("pre");;
+    const textNode = document.createTextNode(prmpt + input + '\n');
     pre.appendChild(textNode);
     document.getElementById('output').appendChild(pre);
-    pre = document.createElement("pre");
+  },
+  appendOutput: (output) => {
+    const pre = document.createElement("pre");
     pre.innerHTML = output;
     document.getElementById('output').appendChild(pre);
   },
@@ -40,6 +42,20 @@ const Textual = {
   }
 };
 
+document.getElementById('input').addEventListener('keypress', function (e) {
+  var key = e.which || e.keyCode;
+  if (key === 13) { // 13 is enter
+    const input = e.srcElement.value;
+    const output = input ? processInput(input) : '';
+    Textual.appendInput(input);
+    Textual.appendOutput(output);
+    e.srcElement.value = '';
+    document.getElementById('window').scrollTo(0, document.getElementById("window").scrollHeight);
+  }
+});
+
+/* CLIENT DEFINED CODE */
+
 const homeText = Textual.replace(`
 ...My name is Tautvilas, welcome to my textual home site!...
 ...Type HELP for the list of available commands.............\n`,
@@ -48,19 +64,11 @@ const homeText = Textual.replace(`
   Tautvilas: Textual.link('http://www.tautvilas.lt'),
 });
 
-function processInput(input, output) {
+function processInput(input) {
   if (input === 'home') {
-    Textual.appendOutput(input, homeText);
+    return homeText;
   } else {
-    Textual.appendOutput(input, 'Command not found\n');
+    return 'Command not found\n';
   }
 }
 
-document.getElementById('input').addEventListener('keypress', function (e) {
-  var key = e.which || e.keyCode;
-  if (key === 13) { // 13 is enter
-    processInput(e.srcElement.value);
-    e.srcElement.value = '';
-    document.getElementById('window').scrollTo(0, document.getElementById("window").scrollHeight);
-  }
-});
