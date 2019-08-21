@@ -14,7 +14,14 @@ const Termpage = {
     pre.className = 'termpage-block';
     $output.appendChild(pre);
   },
-  appendOutput: ($winElement, $input, $output, output, options) => {
+  appendOutput: (output, $output, $winElement) => {
+    const pre = document.createElement("pre");
+    pre.innerHTML = output;
+    pre.className = 'termpage-block';
+    $output.appendChild(pre);
+    $winElement.scrollTo(0, $winElement.scrollHeight);
+  },
+  processInput: ($winElement, $input, $output, output, options) => {
     if (output && output.then) {
       const pre = document.createElement("pre");
       pre.innerHTML = '.';
@@ -25,18 +32,15 @@ const Termpage = {
       output.then((out) => {
         pre.remove();
         $input.setAttribute('style', 'display:flex');
-        const $out = document.createElement("pre");
-        $out.innerHTML = out;
-        $out.className = 'termpage-block';
-        $output.appendChild($out);
-        $winElement.scrollTo(0, $winElement.scrollHeight);
+        Termpage.appendOutput(out, $output, $winElement);
+      });
+      output.catch(() => {
+        pre.remove();
+        $input.setAttribute('style', 'display:flex');
+        Termpage.appendOutput(Termpage.color('red', 'command resolution failed'), $output, $winElement);
       });
     } else {
-      const pre = document.createElement("pre");
-      pre.innerHTML = output;
-      pre.className = 'termpage-block';
-      $output.appendChild(pre);
-      $winElement.scrollTo(0, $winElement.scrollHeight);
+      Termpage.appendOutput(output, $output, $winElement);
     }
   },
   link: (url, text) => {
@@ -66,7 +70,6 @@ const Termpage = {
     options = Object.assign({}, Termpage.defaultOptions, options);
     const $output = document.createElement("div");
     $winElement.appendChild($output);
-    Termpage._$output = $output;
 
     const prompt = options.prompt || Termpage.defaultOptions.prompt;
     const $prompt = document.createElement("span");
@@ -87,7 +90,7 @@ const Termpage = {
     if (options.initialCommand) {
       const output = processInput(options.initialCommand);
       Termpage.appendInput($output, options.initialCommand, options);
-      Termpage.appendOutput($winElement, $inputBlock, $output, output, options);
+      Termpage.processInput($winElement, $inputBlock, $output, output, options);
     }
 
     $input.addEventListener('keypress', function (e) {
@@ -96,7 +99,7 @@ const Termpage = {
         const input = e.srcElement.value;
         const output = input ? processInput(input) : '';
         Termpage.appendInput($output, input, options);
-        Termpage.appendOutput($winElement, $inputBlock, $output, output, options);
+        Termpage.processInput($winElement, $inputBlock, $output, output, options);
         $input.value = '';
       }
     });

@@ -30,11 +30,14 @@ Termpage.init(
   (input) => {
     let resolveP;
     const promise = new Promise((resolve, reject) => {
-      resolveP = resolve;
+      setTimeout(() => {
+        if (Math.random() > 0.5) {
+          resolve(input + " " + input);
+        } else {
+          reject()
+        }
+      }, 1000);
     });
-    setTimeout(() => {
-      resolveP(input + " " + input);
-    }, 1000);
     return promise;
   },
   {
