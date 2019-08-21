@@ -17,4 +17,8 @@ function processInput(input='') {
   }
 }
 
-Textual.init(processInput, window.location.hash.substr(1) || 'home');
+Textual.init(
+  document.getElementById('window'),
+  processInput,
+  window.location.hash.substr(1) || 'home'
+);

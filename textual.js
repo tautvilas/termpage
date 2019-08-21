@@ -34,32 +34,48 @@ const Textual = {
     });
     return response;
   },
-  init: (processInput, initialPath) => {
+  init: ($winElement, processInput, initialPath) => {
+    const $output = document.createElement("div");
+    $output.id = "output";
+    $winElement.appendChild($output);
+
+    const $prompt = document.createElement("span");
+    $prompt.className = "prompt";
+    $prompt.innerHTML = "$&nbsp;";
+
+    const $input = document.createElement("input");
+    $input.id = "input";
+    $input.setAttribute("type", "text");
+
+    const $p = document.createElement("p");
+    $p.className = "input";
+
+    $p.appendChild($prompt);
+    $p.appendChild($input);
+    $winElement.appendChild($p);
+
     Textual._processInput = processInput;
     if (initialPath) {
       const output = Textual._processInput(initialPath);
       Textual.appendOutput(output);
     }
+
+    $input.addEventListener('keypress', function (e) {
+      var key = e.which || e.keyCode;
+      if (key === 13) { // 13 is enter
+        const input = e.srcElement.value;
+        const output = input ? Textual._processInput(input) : '';
+        Textual.appendInput(input);
+        Textual.appendOutput(output);
+        e.srcElement.value = '';
+        $winElement.scrollTo(0, $winElement.scrollHeight);
+      }
+    });
+
+    $input.focus();
+    $winElement.addEventListener("click", function(){
+      $input.focus();
+    });
   }
 };
-
-// listeners
-
-document.getElementById('input').addEventListener('keypress', function (e) {
-  var key = e.which || e.keyCode;
-  if (key === 13) { // 13 is enter
-    const input = e.srcElement.value;
-    const output = input ? Textual._processInput(input) : '';
-    Textual.appendInput(input);
-    Textual.appendOutput(output);
-    e.srcElement.value = '';
-    document.getElementById('window').scrollTo(0, document.getElementById("window").scrollHeight);
-  }
-});
-
-document.getElementById('input').focus();
-
-document.getElementsByTagName("body")[0].addEventListener("click", function(){
-  document.getElementById('input').focus();
-});
 
