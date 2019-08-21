@@ -16,6 +16,8 @@ html, body {
 pre {
   margin: 0;
   padding: 0;
+  white-space: pre-wrap;
+  word-break: keep-all;
 }
 
 input[type=text] {
@@ -40,4 +42,7 @@ ul.menu {
   padding: 0;
 }
 
-
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
