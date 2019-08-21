@@ -1,23 +1,20 @@
 html, body {
-  height: 100%;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
-.window {
+.termpage-window {
   overflow-y: auto;
-  height: 300px;
-  width: 300px;
 }
 
-pre {
+.termpage-block {
   margin: 0;
   padding: 0;
   white-space: pre-wrap;
   word-break: keep-all;
 }
 
-input[type=text] {
+.termpage-input {
   border-width: 0;
   outline: 0;
   caret-color: red;
@@ -25,21 +22,10 @@ input[type=text] {
   padding: 0;
 }
 
-p {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  /*letter-spacing: 1px;*/
-}
-
-ul.menu {
+.termpage-menu {
   display: flex;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-a {
-  cursor: pointer;
-  text-decoration: none;
-}

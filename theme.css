@@ -1,43 +1,38 @@
-/* THEME */
-
-.window {
+.termpage-window {
   background-color: black;
   border: 2px solid #888;
+  padding-top: 5px;
   width: 50%;
   height: 300px;
 }
 
-* {
+.termpage-window * {
   font-family: "Courier New", Courier, monospace;
   font-size: 16px;
   color: #ddd;
 }
 
-input[type=text] {
+.termpage-input {
   background-color: black;
   color: #ddd;
 }
 
-p, input, pre {
+.termpage-block {
   line-height: 20px;
-}
-
-p, ul.menu, pre {
   padding-left: 5px;
   padding-right: 5px;
 }
 
-a {
+.termpage-window a {
   background-color: #888;
+  text-decoration: none;
+  cursor:pointer;
 }
-
-ul.menu {
-  background-color: #888;
-}
-
-a:hover {
+.termpage-window a:hover {
   background-color: #333;
 }
 
-/* END OF THEME */
+.termpage-menu {
+  background-color: #888;
+}
 

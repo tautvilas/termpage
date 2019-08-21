@@ -4,11 +4,13 @@ const Textual = {
     const pre = document.createElement("pre");;
     const textNode = document.createTextNode(prmpt + input + '\n');
     pre.appendChild(textNode);
+    pre.className = 'termpage-block';
     $output.appendChild(pre);
   },
   appendOutput: ($output, output) => {
     const pre = document.createElement("pre");
     pre.innerHTML = output;
+    pre.className = 'termpage-block';
     $output.appendChild(pre);
   },
   link: (url, text) => {
@@ -40,14 +42,15 @@ const Textual = {
     Textual._$output = $output;
 
     const $prompt = document.createElement("span");
-    $prompt.className = "prompt";
+    $prompt.className = "termpage-prompt";
     $prompt.innerHTML = "$&nbsp;";
 
     const $input = document.createElement("input");
     $input.setAttribute("type", "text");
+    $input.className = "termpage-input";
 
     const $p = document.createElement("p");
-    $p.className = "input";
+    $p.className = "termpage-block";
 
     $p.appendChild($prompt);
     $p.appendChild($input);
