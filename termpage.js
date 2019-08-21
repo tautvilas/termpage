@@ -1,13 +1,16 @@
-const Textual = {
-  appendInput: ($output, input) => {
-    const prmpt = "$ ";
+const Termpage = {
+  defaultOptions: {
+    prompt: '$',
+    initialCommand: false
+  },
+  appendInput: ($output, input, options) => {
+    const prmpt = options.prompt + '&nbsp';
     const pre = document.createElement("pre");;
-    const textNode = document.createTextNode(prmpt + input + '\n');
-    pre.appendChild(textNode);
+    pre.innerHTML = prmpt + input + '\n';
     pre.className = 'termpage-block';
     $output.appendChild(pre);
   },
-  appendOutput: ($output, output) => {
+  appendOutput: ($output, output, options) => {
     const pre = document.createElement("pre");
     pre.innerHTML = output;
     pre.className = 'termpage-block';
@@ -36,14 +39,16 @@ const Textual = {
     });
     return response;
   },
-  init: ($winElement, processInput, initialPath) => {
+  init: ($winElement, processInput, options = {}) => {
+    options = Object.assign({}, Termpage.defaultOptions, options);
     const $output = document.createElement("div");
     $winElement.appendChild($output);
-    Textual._$output = $output;
+    Termpage._$output = $output;
 
+    const prompt = options.prompt || Termpage.defaultOptions.prompt;
     const $prompt = document.createElement("span");
     $prompt.className = "termpage-prompt";
-    $prompt.innerHTML = "$&nbsp;";
+    $prompt.innerHTML = prompt + "&nbsp;";
 
     const $input = document.createElement("input");
     $input.setAttribute("type", "text");
@@ -56,20 +61,20 @@ const Textual = {
     $p.appendChild($input);
     $winElement.appendChild($p);
 
-    Textual._processInput = processInput;
-    if (initialPath) {
-      const output = Textual._processInput(initialPath);
-      Textual.appendInput($output, initialPath);
-      Textual.appendOutput($output, output);
+    Termpage._processInput = processInput;
+    if (options.initialCommand) {
+      const output = Termpage._processInput(options.initialCommand);
+      Termpage.appendInput($output, options.initialCommand, options);
+      Termpage.appendOutput($output, output, options);
     }
 
     $input.addEventListener('keypress', function (e) {
       var key = e.which || e.keyCode;
       if (key === 13) { // 13 is enter
         const input = e.srcElement.value;
-        const output = input ? Textual._processInput(input) : '';
-        Textual.appendInput($output, input);
-        Textual.appendOutput($output, output);
+        const output = input ? Termpage._processInput(input) : '';
+        Termpage.appendInput($output, input, options);
+        Termpage.appendOutput($output, output, options);
         e.srcElement.value = '';
         $winElement.scrollTo(0, $winElement.scrollHeight);
       }

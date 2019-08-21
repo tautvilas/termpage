@@ -1,9 +1,9 @@
-const homeText = Textual.replace(`
+const homeText = Termpage.replace(`
 ...My name is Tautvilas, welcome to my textual home site!...
 ...Type HELP for the list of available commands.............\n\n`,
 {
-  commands: Textual.color('orange'),
-  Tautvilas: Textual.link('http://www.tautvilas.lt'),
+  commands: Termpage.color('orange'),
+  Tautvilas: Termpage.link('http://www.tautvilas.lt'),
 });
 
 function processInput(input='') {
@@ -17,14 +17,19 @@ function processInput(input='') {
   }
 }
 
-Textual.init(
+Termpage.init(
   document.getElementById('window1'),
   processInput,
-  window.location.hash.substr(1) || 'home'
+  {
+    initialCommand: window.location.hash.substr(1) || 'home'
+  }
 );
 
-Textual.init(
+Termpage.init(
   document.getElementById('window2'),
   processInput,
-  window.location.hash.substr(1) || 'home'
+  {
+    prompt: Termpage.color('green', 'tautvilas@termpge') + ':'
+  }
 );
+
