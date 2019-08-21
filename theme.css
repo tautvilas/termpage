@@ -15,6 +15,7 @@
 .termpage-input {
   background-color: #222;
   color: #ddd;
+  caret-color: white;
 }
 
 .termpage-block {

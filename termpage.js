@@ -1,7 +1,8 @@
 const Termpage = {
   defaultOptions: {
     prompt: '$',
-    initialCommand: false
+    initialCommand: false,
+    autoFocus: true
   },
   appendInput: ($output, input, options) => {
     const prmpt = options.prompt + '&nbsp';
@@ -79,9 +80,14 @@ const Termpage = {
       }
     });
 
-    $input.focus();
-    $winElement.addEventListener("click", function(){
+    if (options.autoFocus) {
       $input.focus();
+    }
+    $winElement.addEventListener("click", function(){
+      const sel = getSelection().toString();
+      if(!sel){
+        $input.focus();
+      }
     });
   }
 };

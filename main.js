@@ -31,7 +31,8 @@ Termpage.init(
     return input + " " + input;
   },
   {
-    prompt: Termpage.color('green', 'tautvilas@termpge') + ':'
+    prompt: Termpage.color('green', 'tautvilas@termpge') + ':',
+    autoFocus: false
   }
 );
 

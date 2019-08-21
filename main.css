@@ -21,7 +21,6 @@ html, body {
 .termpage-input {
   border-width: 0;
   outline: 0;
-  caret-color: red;
   flex: 1;
   padding: 0;
 }
