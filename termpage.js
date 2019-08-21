@@ -4,7 +4,10 @@ const Termpage = {
     initialCommand: false,
     autoFocus: true
   },
-  appendInput: ($output, input, options) => {
+  appendInput: ($output, input, options, $winElement) => {
+    if ($winElement.lastChild && $winElement.lastChild.tagName === 'UL') {
+      $winElement.lastChild.remove();
+    }
     const prmpt = options.prompt + '&nbsp';
     const pre = document.createElement("pre");;
     const encodedInput = input.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
@@ -15,10 +18,28 @@ const Termpage = {
     $output.appendChild(pre);
   },
   appendOutput: (output, $output, $winElement) => {
+    let outputText = "undefined";
+    let commands = [];
+    if (typeof(output) === "string") {
+      outputText = output;
+    } else if (typeof(output) === "object") {
+      outputText = output.text;
+      commands = output.commands || [];
+    }
     const pre = document.createElement("pre");
-    pre.innerHTML = output;
+    pre.innerHTML = outputText;
     pre.className = 'termpage-block';
     $output.appendChild(pre);
+    if (commands.length) {
+      const $commands = document.createElement('ul');
+      $commands.className = 'termpage-menu termpage-block';
+      commands.forEach(command => {
+        const $command = document.createElement('li');
+        $command.innerHTML = command + '&nbsp;';
+        $commands.appendChild($command);
+      });
+      $winElement.appendChild($commands);
+    }
     $winElement.scrollTo(0, $winElement.scrollHeight);
   },
   processInput: ($winElement, $input, $output, output, options) => {
@@ -89,7 +110,7 @@ const Termpage = {
 
     if (options.initialCommand) {
       const output = processInput(options.initialCommand);
-      Termpage.appendInput($output, options.initialCommand, options);
+      Termpage.appendInput($output, options.initialCommand, options, $winElement);
       Termpage.processInput($winElement, $inputBlock, $output, output, options);
     }
 
@@ -98,7 +119,7 @@ const Termpage = {
       if (key === 13) { // 13 is enter
         const input = e.srcElement.value;
         const output = input ? processInput(input) : '';
-        Termpage.appendInput($output, input, options);
+        Termpage.appendInput($output, input, options, $winElement);
         Termpage.processInput($winElement, $inputBlock, $output, output, options);
         $input.value = '';
       }

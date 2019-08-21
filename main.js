@@ -32,11 +32,14 @@ Termpage.init(
     const promise = new Promise((resolve, reject) => {
       setTimeout(() => {
         if (Math.random() > 0.5) {
-          resolve(input + " " + input);
+          resolve({
+            text: input + " " + input,
+            commands: ['Home', 'About', Termpage.color('yellow', 'Help')]
+          });
         } else {
           reject()
         }
-      }, 1000);
+      }, 500);
     });
     return promise;
   },

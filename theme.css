@@ -35,3 +35,8 @@
   background-color: #888;
 }
 
+.termpage-menu li:hover {
+  background-color: #666;
+  cursor: pointer;
+}
+
