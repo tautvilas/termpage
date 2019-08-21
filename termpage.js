@@ -7,15 +7,37 @@ const Termpage = {
   appendInput: ($output, input, options) => {
     const prmpt = options.prompt + '&nbsp';
     const pre = document.createElement("pre");;
-    pre.innerHTML = prmpt + input + '\n';
+    const encodedInput = input.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
+      return '&#'+i.charCodeAt(0)+';';
+    });
+    pre.innerHTML = prmpt + encodedInput + '\n';
     pre.className = 'termpage-block';
     $output.appendChild(pre);
   },
-  appendOutput: ($output, output, options) => {
-    const pre = document.createElement("pre");
-    pre.innerHTML = output;
-    pre.className = 'termpage-block';
-    $output.appendChild(pre);
+  appendOutput: ($winElement, $input, $output, output, options) => {
+    if (output && output.then) {
+      const pre = document.createElement("pre");
+      pre.innerHTML = '.';
+      pre.className = 'termpage-loader termpage-block';
+      $output.appendChild(pre);
+      $input.setAttribute('style', 'display:none');
+      $winElement.scrollTo(0, $winElement.scrollHeight);
+      output.then((out) => {
+        pre.remove();
+        $input.setAttribute('style', 'display:flex');
+        const $out = document.createElement("pre");
+        $out.innerHTML = out;
+        $out.className = 'termpage-block';
+        $output.appendChild($out);
+        $winElement.scrollTo(0, $winElement.scrollHeight);
+      });
+    } else {
+      const pre = document.createElement("pre");
+      pre.innerHTML = output;
+      pre.className = 'termpage-block';
+      $output.appendChild(pre);
+      $winElement.scrollTo(0, $winElement.scrollHeight);
+    }
   },
   link: (url, text) => {
     if (!text) {
@@ -55,17 +77,17 @@ const Termpage = {
     $input.setAttribute("type", "text");
     $input.className = "termpage-input";
 
-    const $p = document.createElement("p");
-    $p.className = "termpage-block termpage-input-block";
+    const $inputBlock = document.createElement("p");
+    $inputBlock.className = "termpage-block termpage-input-block";
 
-    $p.appendChild($prompt);
-    $p.appendChild($input);
-    $winElement.appendChild($p);
+    $inputBlock.appendChild($prompt);
+    $inputBlock.appendChild($input);
+    $winElement.appendChild($inputBlock);
 
     if (options.initialCommand) {
       const output = processInput(options.initialCommand);
       Termpage.appendInput($output, options.initialCommand, options);
-      Termpage.appendOutput($output, output, options);
+      Termpage.appendOutput($winElement, $inputBlock, $output, output, options);
     }
 
     $input.addEventListener('keypress', function (e) {
@@ -74,9 +96,8 @@ const Termpage = {
         const input = e.srcElement.value;
         const output = input ? processInput(input) : '';
         Termpage.appendInput($output, input, options);
-        Termpage.appendOutput($output, output, options);
-        e.srcElement.value = '';
-        $winElement.scrollTo(0, $winElement.scrollHeight);
+        Termpage.appendOutput($winElement, $inputBlock, $output, output, options);
+        $input.value = '';
       }
     });
 

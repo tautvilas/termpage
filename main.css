@@ -32,3 +32,23 @@ html, body {
   padding: 0;
 }
 
+.termpage-loader::before {
+  content: '';
+  animation: termpage-loader 0.5s infinite;
+}
+
+@keyframes termpage-loader {
+  0% {
+    content: '';
+  }
+  25% {
+    content: '.';
+  }
+  50% {
+    content: '..';
+  }
+  75% {
+    content: '...';
+  }
+}
+

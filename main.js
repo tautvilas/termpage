@@ -28,7 +28,14 @@ Termpage.init(
 Termpage.init(
   document.getElementById('window2'),
   (input) => {
-    return input + " " + input;
+    let resolveP;
+    const promise = new Promise((resolve, reject) => {
+      resolveP = resolve;
+    });
+    setTimeout(() => {
+      resolveP(input + " " + input);
+    }, 1000);
+    return promise;
   },
   {
     prompt: Termpage.color('green', 'tautvilas@termpge') + ':',
