@@ -1,0 +1,23 @@
+{
+  "name": "termpage",
+  "version": "0.0.1",
+  "description": "Terminal Webpage Toolkit",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tautvilas/termpage.git"
+  },
+  "keywords": [
+    "terminal",
+    "webpage"
+  ],
+  "author": "Tautvilas Mecinskas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tautvilas/termpage/issues"
+  },
+  "homepage": "https://github.com/tautvilas/termpage#readme"
+}
