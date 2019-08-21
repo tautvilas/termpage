@@ -36,7 +36,6 @@ const Textual = {
   },
   init: ($winElement, processInput, initialPath) => {
     const $output = document.createElement("div");
-    $output.id = "output";
     $winElement.appendChild($output);
     Textual._$output = $output;
 
@@ -45,7 +44,6 @@ const Textual = {
     $prompt.innerHTML = "$&nbsp;";
 
     const $input = document.createElement("input");
-    $input.id = "input";
     $input.setAttribute("type", "text");
 
     const $p = document.createElement("p");
