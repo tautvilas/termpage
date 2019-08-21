@@ -1,15 +1,15 @@
 const Textual = {
-  appendInput: (input) => {
+  appendInput: ($output, input) => {
     const prmpt = "$ ";
     const pre = document.createElement("pre");;
     const textNode = document.createTextNode(prmpt + input + '\n');
     pre.appendChild(textNode);
-    document.getElementById('output').appendChild(pre);
+    $output.appendChild(pre);
   },
-  appendOutput: (output) => {
+  appendOutput: ($output, output) => {
     const pre = document.createElement("pre");
     pre.innerHTML = output;
-    document.getElementById('output').appendChild(pre);
+    $output.appendChild(pre);
   },
   link: (url, text) => {
     if (!text) {
@@ -38,6 +38,7 @@ const Textual = {
     const $output = document.createElement("div");
     $output.id = "output";
     $winElement.appendChild($output);
+    Textual._$output = $output;
 
     const $prompt = document.createElement("span");
     $prompt.className = "prompt";
@@ -57,7 +58,8 @@ const Textual = {
     Textual._processInput = processInput;
     if (initialPath) {
       const output = Textual._processInput(initialPath);
-      Textual.appendOutput(output);
+      Textual.appendInput($output, initialPath);
+      Textual.appendOutput($output, output);
     }
 
     $input.addEventListener('keypress', function (e) {
@@ -65,8 +67,8 @@ const Textual = {
       if (key === 13) { // 13 is enter
         const input = e.srcElement.value;
         const output = input ? Textual._processInput(input) : '';
-        Textual.appendInput(input);
-        Textual.appendOutput(output);
+        Textual.appendInput($output, input);
+        Textual.appendOutput($output, output);
         e.srcElement.value = '';
         $winElement.scrollTo(0, $winElement.scrollHeight);
       }

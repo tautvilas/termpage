@@ -18,7 +18,13 @@ function processInput(input='') {
 }
 
 Textual.init(
-  document.getElementById('window'),
+  document.getElementById('window1'),
+  processInput,
+  window.location.hash.substr(1) || 'home'
+);
+
+Textual.init(
+  document.getElementById('window2'),
   processInput,
   window.location.hash.substr(1) || 'home'
 );

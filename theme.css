@@ -3,6 +3,7 @@
 .window {
   background-color: black;
   border: 2px solid #888;
+  width: 50%;
 }
 
 * {
