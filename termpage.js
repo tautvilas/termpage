@@ -55,15 +55,14 @@ const Termpage = {
     $input.className = "termpage-input";
 
     const $p = document.createElement("p");
-    $p.className = "termpage-block";
+    $p.className = "termpage-block termpage-input-block";
 
     $p.appendChild($prompt);
     $p.appendChild($input);
     $winElement.appendChild($p);
 
-    Termpage._processInput = processInput;
     if (options.initialCommand) {
-      const output = Termpage._processInput(options.initialCommand);
+      const output = processInput(options.initialCommand);
       Termpage.appendInput($output, options.initialCommand, options);
       Termpage.appendOutput($output, output, options);
     }
@@ -72,7 +71,7 @@ const Termpage = {
       var key = e.which || e.keyCode;
       if (key === 13) { // 13 is enter
         const input = e.srcElement.value;
-        const output = input ? Termpage._processInput(input) : '';
+        const output = input ? processInput(input) : '';
         Termpage.appendInput($output, input, options);
         Termpage.appendOutput($output, output, options);
         e.srcElement.value = '';

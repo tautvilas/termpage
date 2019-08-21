@@ -27,7 +27,9 @@ Termpage.init(
 
 Termpage.init(
   document.getElementById('window2'),
-  processInput,
+  (input) => {
+    return input + " " + input;
+  },
   {
     prompt: Termpage.color('green', 'tautvilas@termpge') + ':'
   }
