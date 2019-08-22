@@ -239,7 +239,7 @@ html, body {
   const styleSheet = document.createElement("style")
   styleSheet.type = "text/css"
   styleSheet.innerText = styles
-  document.head.appendChild(styleSheet)
+  document.head.prepend(styleSheet)
   const theme = `
 .termpage-window {
   background-color: black;
@@ -289,6 +289,6 @@ html, body {
   const themeSheet = document.createElement("style")
   themeSheet.type = "text/css"
   themeSheet.innerText = theme;
-  document.head.appendChild(themeSheet)
+  document.head.prepend(themeSheet)
 })();
 
