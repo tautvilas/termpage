@@ -1,4 +1,4 @@
-# Termpage
+# Termpage 💻
 Termpage allows you to create neat functional webpages that behave like a terminal
 
 ![](https://i.imgur.com/wqaqeNB.png)
