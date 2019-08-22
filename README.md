@@ -1,5 +1,5 @@
 # Termpage
-Termpage allows you to quickly create a neat functional webpage that behaves like a terminal 
+Termpage allows you to create a neat functional webpage that behaves like a terminal 
 
 # Example usage
 Just drop this code in your index.html to start using termpage
