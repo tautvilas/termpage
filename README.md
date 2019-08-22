@@ -4,7 +4,7 @@ Termpage allows you to create neat functional webpages that behave like a termin
 ![](https://i.imgur.com/wqaqeNB.png)
 
 # Why Termpage?
-I wanted to build an effective web interface to my raspberry pi home server without thinking too much about ux. Then I had an idea about building this terminal interface library that would enable people to bootstrap similar websites.
+I wanted to build an effective web interface form my raspberry pi home server without thinking too much about design or ux.
 
 # Example usage
 Just drop this code in your index.html to start using termpage
