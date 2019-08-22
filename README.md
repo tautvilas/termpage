@@ -51,7 +51,7 @@ commandParser = (input) => {
 
 `response` can be either string or object `{text: responseText, commands: ['menuCommand1', 'menuCommand']}`
 
-Commands array is used to display command suggestion interface bellow command input. This interface can make life easier for people with mobile defices because they can tap on commands instead of typing them.
+Commands array is used to display command suggestion interface bellow command input. This interface can make life easier for people with mobile devices because they can tap on commands instead of typing them.
 
 List of available options:
 
