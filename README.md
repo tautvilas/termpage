@@ -33,7 +33,7 @@ Just drop this code in your index.html to start using termpage
   </body>
 </html>
 ```
-You can check more complicated usage samples in the [examples folder](https://github.com/tautvilas/termpage/tree/master/example)
+You can check more complicated usage samples in the [examples folder](https://tautvilas.github.io/termpage/example/index.html)
 
 # API documentation
 
