@@ -1,7 +1,7 @@
 # Termpage
 Termpage allows you to create neat functional webpages that behave like a terminal
 
-![Image of Yaktocat](https://raw.githubusercontent.com/tautvilas/termpage/master/img/termpage2.png?token=AAH646Q6XF6EIHNJ5J6BRVK5L3TMU)
+![](https://i.imgur.com/wqaqeNB.png)
 
 # Why Termpage?
 I wanted to build an effective web interface to my raspberry pi home server without thinking too much about ux. Then I had an idea about building this terminal interface library that would enable people to bootstrap similar websites.
