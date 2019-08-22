@@ -13,7 +13,7 @@ Just drop this code in your index.html to start using termpage
 <html>
   <head>
     <title>termpage@home</title>
-    <script src="https://cdn.jsdelivr.net/npm/termpage@0.1.0/dist/termpage.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/termpage@0.1.1/dist/termpage.min.js" type="text/javascript"></script>
   </style>
   </head>
   <body>
