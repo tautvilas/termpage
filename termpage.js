@@ -261,6 +261,9 @@ html, body {
 
 .termpage-block, .termpage-input {
   line-height: 20px;
+}
+
+.termpage-block {
   padding-left: 5px;
   padding-right: 5px;
 }
