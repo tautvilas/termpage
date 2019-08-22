@@ -259,7 +259,7 @@ const Termpage = {
       caret-color: white;
     }
 
-    .termpage-block {
+    .termpage-block, .termpage-input {
       line-height: 20px;
       padding-left: 5px;
       padding-right: 5px;
