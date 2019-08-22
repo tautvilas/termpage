@@ -1,6 +1,6 @@
 const homeText = Termpage.replace(`
-...My name is Tautvilas, welcome to my textual home site!...
-...Type HELP for the list of available commands.............\n\n`,
+...My name is Tautvilas, welcome to my termpage!...
+...Type HELP for the list of available commands....\n\n`,
 {
   commands: Termpage.color('orange'),
   Tautvilas: Termpage.link('http://www.tautvilas.lt'),
@@ -8,7 +8,9 @@ const homeText = Termpage.replace(`
 
 function processInput(input='') {
   input = input.toLowerCase().trim();
-  if (input === 'home') {
+  if (input === "help") {
+    return "Available commands are `home`, `help` and `image`";
+  } else if (input === 'home') {
     return homeText;
   } else if (input === 'image') {
     return '<img width="200" height="200" src="https://i.imgur.com/RDsb26sb.jpg" alt="me"/>';
@@ -44,6 +46,7 @@ Termpage.init(
     return promise;
   },
   {
+    initialCommand: 'Async promise example',
     prompt: Termpage.color('green', 'tautvilas@termpge') + ':',
     autoFocus: false
   }
