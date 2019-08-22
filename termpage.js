@@ -182,106 +182,106 @@ const Termpage = {
 
 (() => {
   const styles = `
-    html, body {
-      margin: 0;
-      padding: 0;
-    }
+html, body {
+  margin: 0;
+  padding: 0;
+}
 
-    .termpage-window {
-      overflow-y: auto;
-    }
+.termpage-window {
+  overflow-y: auto;
+}
 
-    .termpage-block {
-      margin: 0;
-      padding: 0;
-      white-space: pre-wrap;
-      word-break: keep-all;
-    }
+.termpage-block {
+  margin: 0;
+  padding: 0;
+  white-space: pre-wrap;
+  word-break: keep-all;
+}
 
-    .termpage-input-block {
-      display: flex;
-    }
+.termpage-input-block {
+  display: flex;
+}
 
-    .termpage-input {
-      border-width: 0;
-      outline: 0;
-      flex: 1;
-      padding: 0;
-    }
+.termpage-input {
+  border-width: 0;
+  outline: 0;
+  flex: 1;
+  padding: 0;
+}
 
-    .termpage-menu {
-      display: flex;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
+.termpage-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
-    .termpage-loader::before {
-      content: '';
-      animation: termpage-loader 0.5s infinite;
-    }
+.termpage-loader::before {
+  content: '';
+  animation: termpage-loader 0.5s infinite;
+}
 
-    @keyframes termpage-loader {
-      0% {
-        content: '';
-      }
-      25% {
-        content: '.';
-      }
-      50% {
-        content: '..';
-      }
-      75% {
-        content: '...';
-      }
-    }
+@keyframes termpage-loader {
+  0% {
+    content: '';
+  }
+  25% {
+    content: '.';
+  }
+  50% {
+    content: '..';
+  }
+  75% {
+    content: '...';
+  }
+}
   `
   const styleSheet = document.createElement("style")
   styleSheet.type = "text/css"
   styleSheet.innerText = styles
   document.head.appendChild(styleSheet)
   const theme = `
-    .termpage-window {
-      background-color: black;
-      border: 2px solid #888;
-      padding-top: 5px;
-    }
+.termpage-window {
+  background-color: black;
+  border: 2px solid #888;
+  padding-top: 5px;
+}
 
-    .termpage-window * {
-      font-family: "Courier New", Courier, monospace;
-      font-size: 16px;
-      color: #ddd;
-    }
+.termpage-window * {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 16px;
+  color: #ddd;
+}
 
-    .termpage-input {
-      background-color: #222;
-      color: #ddd;
-      caret-color: white;
-    }
+.termpage-input {
+  background-color: #222;
+  color: #ddd;
+  caret-color: white;
+}
 
-    .termpage-block, .termpage-input {
-      line-height: 20px;
-      padding-left: 5px;
-      padding-right: 5px;
-    }
+.termpage-block, .termpage-input {
+  line-height: 20px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
 
-    .termpage-window a {
-      background-color: #888;
-      text-decoration: none;
-      cursor:pointer;
-    }
-    .termpage-window a:hover {
-      background-color: #333;
-    }
+.termpage-window a {
+  background-color: #888;
+  text-decoration: none;
+  cursor:pointer;
+}
+.termpage-window a:hover {
+  background-color: #333;
+}
 
-    .termpage-menu {
-      background-color: #888;
-    }
+.termpage-menu {
+  background-color: #888;
+}
 
-    .termpage-menu li:hover {
-      background-color: #666;
-      cursor: pointer;
-    }
+.termpage-menu li:hover {
+  background-color: #666;
+  cursor: pointer;
+}
   `
   const themeSheet = document.createElement("style")
   themeSheet.type = "text/css"
