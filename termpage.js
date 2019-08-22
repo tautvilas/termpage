@@ -1,9 +1,11 @@
 const Termpage = {
+
   defaultOptions: {
     prompt: '$',
     initialCommand: false,
     autoFocus: true
   },
+
   appendInput: ($output, input, options, $winElement) => {
     if ($winElement.lastChild && $winElement.lastChild.tagName === 'UL') {
       $winElement.lastChild.remove();
@@ -17,6 +19,7 @@ const Termpage = {
     pre.className = 'termpage-block';
     $output.appendChild(pre);
   },
+
   appendOutput: (output, $output, $winElement) => {
     let outputText = "undefined";
     let commands = [];
@@ -42,6 +45,7 @@ const Termpage = {
     }
     $winElement.scrollTo(0, $winElement.scrollHeight);
   },
+
   processInput: ($winElement, $input, $output, output, options) => {
     if (output && output.then) {
       const pre = document.createElement("pre");
@@ -64,22 +68,27 @@ const Termpage = {
       Termpage.appendOutput(output, $output, $winElement);
     }
   },
+
   link: (url, text) => {
+    const res = (t) => `<a href="${url}" target="_blank">${t}</a>`;
     if (!text) {
       return (text) => {
-        return `<a href="${url}" target="_blank">${text}</a>`;
+        return res(text);
       };
     }
-    return `<a href="${url}" target="_blank">${text}</a>`;
+    return res(text);
   },
+
   color: (color, text) => {
+    const res = (t) => `<span style="color:${color}">${t}</span>`;
     if (!text) {
       return (text) => {
-        return `<span style="color:${color}">${text}</span>`;
+        return res(text);
       };
     }
-    return `<span style="color:${color}">${text}</span>`;
+    return res(text);
   },
+
   replace: (text, changes) => {
     let response = text;
     Object.keys(changes).forEach(key => {
@@ -87,6 +96,7 @@ const Termpage = {
     });
     return response;
   },
+
   init: ($winElement, processInput, options = {}) => {
     options = Object.assign({}, Termpage.defaultOptions, options);
     const $output = document.createElement("div");
