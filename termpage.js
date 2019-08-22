@@ -104,6 +104,8 @@ const Termpage = {
   },
 
   init: ($winElement, processInput, options = {}) => {
+    const history = [];
+    let historyIndex = 0;
     options = Object.assign({}, Termpage.defaultOptions, options);
     const $output = document.createElement("div");
     $winElement.appendChild($output);
@@ -131,7 +133,11 @@ const Termpage = {
       $output
     }
 
-    options.processInput = processInput;
+    options.processInput = (inp) => {
+      historyIndex = 0;
+      history.push(inp);
+      return processInput(inp);
+    };
 
     if (options.initialCommand) {
       const output = processInput(options.initialCommand);
@@ -139,14 +145,26 @@ const Termpage = {
       Termpage._processInput(output, options, dom);
     }
 
-    $input.addEventListener('keypress', function (e) {
+    $input.addEventListener('keydown', function (e) {
       var key = e.which || e.keyCode;
       if (key === 13) { // 13 is enter
         const input = e.srcElement.value;
-        const output = input ? processInput(input) : '';
+        const output = input ? options.processInput(input) : '';
         Termpage._appendInput(input, options, dom);
         Termpage._processInput(output, options, dom);
         $input.value = '';
+      } if (key === 38) { // up
+        const val = history[history.length - historyIndex - 1];
+        if (val) {
+          historyIndex++;
+          dom.$input.value = val;
+        }
+      } else if (key === 40) { // down
+        const val = history[history.length - historyIndex + 1];
+        if (val) {
+          historyIndex--;
+          dom.$input.value = val;
+        }
       }
     });
 
