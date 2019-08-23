@@ -9,7 +9,15 @@ Termpage allows you to create neat functional webpages that behave like a termin
 I wanted to build an effective web interface for my raspberry pi home server without thinking too much about design or ux.
 
 # Example usage
-Just drop this code in your index.html to start using termpage
+
+You can include termpage lib from CDN or install it from npm.
+```html
+<script src="https://cdn.jsdelivr.net/npm/termpage@0.1.1/dist/termpage.min.js" type="text/javascript">
+</script>
+```
+```npm install --save termpage```
+
+The easiest way to get started is to drop this code in your index.html and implement your own terminal logic inside command processing function
 ```html
 <!doctype html>
 <html>
