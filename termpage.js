@@ -149,7 +149,7 @@ const Termpage = {
       var key = e.which || e.keyCode;
       if (key === 13) { // 13 is enter
         const input = e.srcElement.value;
-        const output = input ? options.processInput(input) : '';
+        const output = options.processInput(input);
         Termpage._appendInput(input, options, dom);
         Termpage._processInput(output, options, dom);
         $input.value = '';
