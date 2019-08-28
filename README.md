@@ -12,7 +12,7 @@ I wanted to build an effective web interface for my raspberry pi home server wit
 
 You can include termpage lib from CDN or install it from npm.
 ```html
-<script src="https://cdn.jsdelivr.net/npm/termpage@0.1.1/dist/termpage.min.js" type="text/javascript">
+<script src="https://cdn.jsdelivr.net/npm/termpage@0.1.2/dist/termpage.min.js" type="text/javascript">
 </script>
 ```
 ```npm install --save termpage```
