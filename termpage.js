@@ -194,8 +194,11 @@ html, body {
 .termpage-block {
   margin: 0;
   padding: 0;
-  white-space: pre-wrap;
+}
+
+pre.termpage-block {
   word-break: keep-all;
+  white-space: pre-wrap !important;
 }
 
 .termpage-input-block {
