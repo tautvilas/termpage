@@ -1,7 +1,7 @@
 # Termpage 💻
 [![Version](https://img.shields.io/npm/v/termpage.svg)](https://www.npmjs.com/package/termpage)
 
-Termpage allows you to create neat functional webpages that behave like a terminal
+Termpage allows you to create neat webpages that behave like a terminal
 
 ![](https://i.imgur.com/wqaqeNB.png)
 
