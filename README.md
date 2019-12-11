@@ -10,6 +10,8 @@ I wanted to build an effective web interface for my raspberry pi home server wit
 
 # Example usage
 
+You can usage demo in the [examples folder](https://tautvilas.github.io/termpage/example/index.html) or let a [cow tell your fortune](http://home.tautvilas.lt/#fortune)
+
 You can include termpage lib from CDN or install it from npm.
 ```html
 <script src="https://cdn.jsdelivr.net/npm/termpage@0.1.3/dist/termpage.min.js" type="text/javascript">
@@ -43,7 +45,6 @@ The easiest way to get started is to drop this code in your index.html and imple
   </body>
 </html>
 ```
-You can check more complicated usage demo in the [examples folder](https://tautvilas.github.io/termpage/example/index.html)
 
 # API documentation
 
