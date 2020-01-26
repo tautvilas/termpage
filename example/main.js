@@ -15,8 +15,10 @@ function processInput(input='') {
     return {text: homeText, commands: commands};
   } else if (input === 'image') {
     return {text: '<img width="200" height="200" src="https://i.imgur.com/RDsb26sb.jpg" alt="me"/>', commands: commands};
-  } else {
+  } else if (input) {
     return {text: 'Command not found\n', commands: commands};
+  } else {
+    return {text: '', commands: commands};
   }
 }
 
@@ -31,7 +33,8 @@ Termpage.init(
 Termpage.init(
   document.getElementById('window2'),
   (input) => {
-    if (input === 'home') {
+    if (!input) { return '' }
+    else if (input === 'home') {
       return 'This terminal demonstrates async commands that have 50% chance of failing';
     }
     let resolveP;

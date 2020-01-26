@@ -1,5 +1,7 @@
 # Termpage 💻
-Termpage allows you to create neat functional webpages that behave like a terminal
+[![Version](https://img.shields.io/npm/v/termpage.svg)](https://www.npmjs.com/package/termpage)
+
+Termpage allows you to create neat webpages that behave like a terminal
 
 ![](https://i.imgur.com/wqaqeNB.png)
 
@@ -7,13 +9,23 @@ Termpage allows you to create neat functional webpages that behave like a termin
 I wanted to build an effective web interface for my raspberry pi home server without thinking too much about design or ux.
 
 # Example usage
-Just drop this code in your index.html to start using termpage
+
+You can see usage demo in the [examples folder](https://tautvilas.github.io/termpage/example/index.html) or let a [cow tell your fortune](http://home.tautvilas.lt/#fortune)
+
+To use termpage include the lib from CDN or install it from npm.
+```html
+<script src="https://cdn.jsdelivr.net/npm/termpage@0.1.3/dist/termpage.min.js" type="text/javascript">
+</script>
+```
+```npm install --save termpage```
+
+The easiest way to get started is to drop this code in your index.html and implement your own terminal logic inside command processing function
 ```html
 <!doctype html>
 <html>
   <head>
     <title>termpage@home</title>
-    <script src="https://cdn.jsdelivr.net/npm/termpage@0.1.0/dist/termpage.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/termpage@0.1.3/dist/termpage.min.js" type="text/javascript"></script>
   </style>
   </head>
   <body>
@@ -33,7 +45,6 @@ Just drop this code in your index.html to start using termpage
   </body>
 </html>
 ```
-You can check more complicated usage demo in the [examples folder](https://tautvilas.github.io/termpage/example/index.html)
 
 # API documentation
 
@@ -51,7 +62,7 @@ commandParser = (input) => {
 
 `response` can be either string or object `{text: responseText, commands: ['menuCommand1', 'menuCommand']}`
 
-Commands array is used to display command suggestion interface bellow command input. This interface can make life easier for people with mobile defices because they can tap on commands instead of typing them.
+Commands array is used to display command suggestion interface bellow command input. This interface can make life easier for people with mobile devices because they can tap on commands instead of typing them.
 
 List of available options:
 

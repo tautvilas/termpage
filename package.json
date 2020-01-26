@@ -1,6 +1,6 @@
 {
   "name": "termpage",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "Terminal Webpage Toolkit",
   "main": "main.js",
   "scripts": {
