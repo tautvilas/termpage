@@ -277,6 +277,11 @@ html, body {
   background-color: #333;
 }
 
+.termpage-window * {
+  max-height: 999999px;
+  -moz-text-size-adjust: none;
+}
+
 .termpage-menu {
   background-color: #888;
 }
