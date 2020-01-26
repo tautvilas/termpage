@@ -117,6 +117,8 @@ const Termpage = {
 
     const $input = document.createElement("input");
     $input.setAttribute("type", "text");
+    $input.setAttribute("autocorrect", "off");
+    $input.setAttribute("autocapitalize", "off");
     $input.className = "termpage-input";
 
     const $inputBlock = document.createElement("p");
