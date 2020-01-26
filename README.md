@@ -14,7 +14,7 @@ You can see usage demo in the [examples folder](https://tautvilas.github.io/term
 
 To use termpage include the lib from CDN or install it from npm.
 ```html
-<script src="https://cdn.jsdelivr.net/npm/termpage@0.1.3/dist/termpage.min.js" type="text/javascript">
+<script src="https://cdn.jsdelivr.net/npm/termpage@0.1.5/dist/termpage.min.js" type="text/javascript">
 </script>
 ```
 ```npm install --save termpage```
